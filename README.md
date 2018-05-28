@@ -5,19 +5,19 @@
 
 ## Hardware
 
-Arduino mega 2560
-skærm
-mikrofon
-SD kort læser
-lavpassfilter
+* Arduino mega 2560
+* skærm
+* mikrofon
+* SD kort læser
+* lavpassfilter
 
 ## Software
 
-FFT
-Atmel Studio 7
+* FFT
+* Atmel Studio 7
 
 ## Medlemmer
 
-Mads
-Thomas
-Ragnar-Gwyn
+* Mads
+* Thomas
+* Ragnar-Gwyn
