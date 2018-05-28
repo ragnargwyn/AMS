@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>40</x>
+      <y>60</y>
+      <w>1050</w>
+      <h>430</h>
+    </coordinates>
+    <panel_attributes>title=Description of interaktion between eyetracking threads
+obj=&lt;&lt;tread&gt;&gt;\nthreadEyeTracking~te
+obj=&lt;&lt;object&gt;&gt;\nEyeTracking~e
+obj=&lt;&lt;thread&gt;&gt;\nthreadCursor~c
+obj=&lt;&lt;object&gt;&gt;\nGUI~g
+
+te-&gt;e : startEyeTracking(); on=te,e
+c-&gt;&gt;&gt;e : getDirection() ; on=c ;
+e : wait until direction is avalible
+
+e.&gt;c : eye direction
+c-&gt;c+ ;c : match direction to screen coordinates
+
+tick=
+c-&gt;&gt;&gt;g : moveCursorToCoordinates(x,y); on=g
+g.&gt;c : void; off=g</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

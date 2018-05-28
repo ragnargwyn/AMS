@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>49</x>
+      <y>0</y>
+      <w>917</w>
+      <h>679</h>
+    </coordinates>
+    <panel_attributes>title=PC - UC2: Active Choice
+obj=&lt;&lt;boundary&gt;&gt;\nEyeCamCtrl~e
+obj=&lt;&lt;boundary&gt;&gt;\nGUI~g
+obj=&lt;&lt;domain&gt;&gt;\nActiveChoice~a
+obj=&lt;&lt;control&gt;&gt;\nPC~p
+obj=&lt;&lt;domain&gt;&gt;\nEyeTracking~t
+obj=&lt;&lt;boundary&gt;&gt;\nWifi~w
+
+tick=
+p-&gt;&gt;&gt;t:getDirection(); on=p; on=t;
+t.&gt;p:direction; off=t;
+p-&gt;&gt;&gt;g:moveCursorToCoordinates(x,y); on=g
+g.&gt;p:void; off=p;
+g-&gt;&gt;&gt;a:startTimer(button); on=a;
+a-&gt;a++
+a : DisplayProcesIndicator();
+
+tick=
+a.&gt;g:void; off=a; off=g;
+combinedFragment=opt [user loooks away from choice field]~opt1;
+p-&gt;&gt;&gt;t:getDirection(); on=p; on=t;
+t.&gt;p:direction; off=t;
+p-&gt;&gt;&gt;g:moveCursorToCoordinates(x,y); on=g
+g.&gt;p:void; off=p;
+g-&gt;&gt;&gt;a:stopTimer(); on=a
+a-&gt;a++; 
+a:HideProcesIndicator();
+tick=
+a.&gt;g:void; off=a; off=g;
+p:EXIT USE CASE;--;
+
+tick=
+a-&gt;g:timerExpired; on=g
+stateInvariant=g: STM UC2: ActiveChoice; off=g; </panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

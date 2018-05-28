@@ -1,0 +1,24 @@
+%\input{preamble_eyerobot}
+
+%\begin{document}
+
+\section{MsgQueue klassen}
+
+I følgende afsnit vil klassen MsgQueue blive beskrevet.
+
+MsgQueue har til ansvar at danne en simpel måde at sende beskeder mellem tråde. 
+Derudover skal klassen simplificere låsning af variable og mindske risikoen for forkert timing. \\
+MsqQueue'en er designet til at have et simpelt interface med kun to funktioner: send og modtag.
+Når der oprettes et objekt af klassen, specificeres hvor mange beskeder, der må være i den. Dette bliver overholdt internt. \\
+På figur \ref{fig:msgqueue_flowchart} er funktionaliteten og anvendelsesmetoden for MsgQueue beskrevet med et aktivitetsdiagram.
+Farverne indikerer, hvilke signaler og ventetilstande, der hænger sammen. 
+For at MsgQueue kan sende beskeder, skal alle beskeder arve fra klassen Message. Message er en simpel klasse, der udelukkende indeholder en virtual destructor, der sikrer, at beskedens egen destructor bliver kaldt, når beskeden slettes.
+
+\begin{figure} [H]
+\centering
+	\includegraphics[width=0.8\textwidth]{msgqueue_flowchart.pdf}
+	\captionof{figure}{Beskrivelse af MsgQueue klassen med anvendelsesmetode}
+	\label{fig:msgqueue_flowchart}
+\end{figure}
+
+%\end{document}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>20</x>
+      <y>0</y>
+      <w>720</w>
+      <h>960</h>
+    </coordinates>
+    <panel_attributes>title=ControlUnit - UC3: Control Robot
+obj=&lt;&lt;boundary&gt;&gt;\nWiFi~w
+obj=&lt;&lt;control&gt;&gt;\nControlUnit~c
+obj=&lt;&lt;boundary&gt;&gt;\nI2C~m
+
+c-&gt;&gt;&gt;w:readCmd(control,size);on=c,w
+w.&gt;c:length;off=w
+
+combinedFragment=alt~alt;c:[control = forward/brake control]
+c-&gt;&gt;&gt;m:sendCmd(drive);on=m
+m.&gt;c:void;off=m
+tick=
+
+..;c:[control = turn movement]
+c-&gt;&gt;&gt;m:sendCmd(turn);on=m
+m.&gt;c:void;off=m;
+tick=
+
+..;c:[control = neutral]
+c-&gt;&gt;&gt;m:sendCmd(neutral);on=m
+m.&gt;c:void;off=m,c;--;
+
+tick=
+combinedFragment=opt~opt;c:[motors not moving]
+m-&gt;c:motors not moving;on=c
+c-&gt;&gt;&gt;w:sendCmd(robotStopped);on=w
+w.&gt;c:void;off=w,c;
+tick=
+
+..; c:[motors moving]
+m-&gt;c:motors moving;on=c
+c-&gt;&gt;&gt;w:sendCmd(robotMoving);on=w
+w.&gt;c:void;off=w,c;--</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

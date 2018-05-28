@@ -1,0 +1,44 @@
+\include{preamble_eyerobot}
+
+%---------------------------------------------------------------------
+%	Officiel AMS rapport
+%---------------------------------------------------------------------
+
+\begin{document}
+
+%-------FORMALIA-------
+\input{Forside}
+
+\tableofcontents
+
+\newpage
+
+\input{Laesevejledning}
+\newpage
+\input{Ordforklaring}
+\input{Forord}
+\newpage
+\input{Indledning}
+\input{Krav}
+\input{Systemarkitektur}
+\input{Design_implementering_enhedstest}
+\input{accepttest}
+\input{opnaaedeerfaringer}
+\input{Konklusion}
+
+%-------------------------------------------------------------------
+%   REFERENCER
+%-------------------------------------------------------------------
+%\clearpage
+
+\addcontentsline{toc}{chapter}{Litteratur}
+\bibliographystyle{dk-unsrt}
+\bibliography{IEEEabrv,refs}
+
+
+%-------------------------------------------------------------------
+%   BILAG
+%-------------------------------------------------------------------
+\input{Bilag}
+
+\end{document}

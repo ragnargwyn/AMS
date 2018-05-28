@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>140</x>
+      <y>60</y>
+      <w>510</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>title=ControlUnit - UC1: Start system
+obj=&lt;&lt;boundary&gt;&gt;\nWifi~w
+obj=&lt;&lt;control&gt;&gt;\nControlUnit~c
+obj=&lt;&lt;boundary&gt;&gt;\nI2C~m
+ 
+c-&gt;&gt;&gt;w:connectToPC();on=w,c;
+w.&gt;c:status;off=w
+
+c-&gt;&gt;&gt;m:sendCmd(start);on=m
+m.&gt;c:status;off=m,c;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

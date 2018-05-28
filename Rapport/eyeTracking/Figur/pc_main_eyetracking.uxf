@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>0</x>
+      <y>36</y>
+      <w>606</w>
+      <h>282</h>
+    </coordinates>
+    <panel_attributes>title=beskrivelse af interaktion mellem øjnstyring tråde
+obj=&lt;&lt;tread&gt;&gt;\nthreadEyeTracking~te
+obj=&lt;&lt;objekt&gt;&gt;\nEyeTracking~e
+obj=&lt;&lt;thread&gt;&gt;\nthreadCursor~c
+obj=&lt;&lt;objekt&gt;&gt;\nGUI~g
+
+te-&gt;e : startEyeTracking(); on=te,e
+c-&gt;&gt;&gt;e : getDirection() ; on=c
+e : kører indtil en ny retning er tilgængeligt
+
+e.&gt;c : øjn retning
+c-&gt;c++
+c : bestemmer hvilke koordinater på GUI'et retningen svarer til
+
+tick=
+c-&gt;&gt;&gt;g : moveCursorToCoordinates(x,y)
+g.&gt;c : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

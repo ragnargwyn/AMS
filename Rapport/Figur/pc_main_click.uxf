@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>0</x>
+      <y>16</y>
+      <w>552</w>
+      <h>432</h>
+    </coordinates>
+    <panel_attributes>title=Reaktion på GUI interaktion
+obj=&lt;&lt;objekt&gt;&gt;\nGUI~g
+obj=&lt;&lt;thread&gt;&gt;\nthreadClick~c
+obj=&lt;&lt;objekt&gt;&gt;\nWifi~w
+
+g-&gt;c : RobotControlInd(direction); on=c
+c-&gt;c++; 
+c:bestemmer hvilken kontrolbesked der skal sendes ud fra retningen
+tick=
+
+c-&gt;&gt;&gt;w : sendCmd(kontrolbesked); on=w;
+w.&gt;c : void; off=w,c
+
+tick=2
+
+g-&gt;c : PowerOffInd; on=c
+
+c-&gt;&gt;&gt;w : sendCmd(slumber); on=w;
+w.&gt;c : void; off=w,c
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

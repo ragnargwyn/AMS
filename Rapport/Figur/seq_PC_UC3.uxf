@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>196</x>
+      <y>14</y>
+      <w>735</w>
+      <h>616</h>
+    </coordinates>
+    <panel_attributes>title=PC - UC3: Control Robot
+obj=&lt;&lt;boundary&gt;&gt;\nEyeCamCtrl~e
+obj=&lt;&lt;boundary&gt;&gt;\nGUI~g
+obj=&lt;&lt;domain&gt;&gt;\nActiveChoice~a
+obj=&lt;&lt;control&gt;&gt;\nPC~p
+obj=&lt;&lt;domain&gt;&gt;\nEyeTracking~t
+obj=&lt;&lt;boundary&gt;&gt;\nWifi~w
+
+combinedFragment=alt ~opt2;
+g-&gt;p : RobotControlInd(direction); on=p;
+p-&gt;&gt;&gt;w : sendCmd(direction); on=w
+w.&gt;p : void; off=w,p
+
+tick=
+..
+tick=
+
+g-&gt;p : PowerOffInd(); on=p;
+stateInvariant=p: UC4 : Slumber ; off=p
+
+tick=
+..
+tick=
+
+p-&gt;&gt;&gt;w : readCmd(); on=p,w
+w.&gt;p : command; off=w;
+combinedFragment=opt ~opt1; p : [command = Robot stopped]
+p-&gt;&gt;&gt;g : ShowMenuIcon(); on=g
+g.&gt;p : void; off=g
+tick=
+..; p:[command = Robot moving]
+p-&gt;&gt;&gt;g : ShowBrakeIcon(); on=g
+g.&gt;p : void; off=g,p; --;--
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>750</w>
+      <h>430</h>
+    </coordinates>
+    <panel_attributes>title=ControlUnit - UC4: Slumber
+obj=&lt;&lt;boundary&gt;&gt;\nWifi~w
+obj=&lt;&lt;control&gt;&gt;\nControlUnit~c
+obj=&lt;&lt;boundary&gt;&gt;\nI2C~m
+
+c-&gt;&gt;&gt;w:readCmd(buffer,size);on=c,w
+w.&gt;c:length;off=w
+
+
+
+c-&gt;&gt;&gt;m:readCmd(control,size);on=m
+m.&gt;c:void;off=m;
+
+c-&gt;&gt;&gt;w:sendCmd(slumber_ack,size);on=w
+w.&gt;c:void;off=w;
+c-&gt;c++;
+c:Slumber()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

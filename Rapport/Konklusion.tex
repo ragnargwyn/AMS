@@ -1,0 +1,25 @@
+%\input{preamble_eyerobot}
+
+%\begin{document}
+	
+\chapter{Konklusion}		
+I projektet er det lykkedes at implementere en prototype med en øjenstyret PC-applikation, en fjernstyret robot, samt kommunikationen og videostream mellem disse.
+Der er ikke implementeret eksterne moduler.
+
+PC-applikationen indeholder alle de features, der er opstillet krav omkring. Øjendetekteringsmodulet har dog ikke opnået en pålidelighed, som er god nok til, at det vil kunne bruges i praksis og delvist kunne bestå accepttesten.  \\
+I accepttesten fejler nogle punkter, men disse er ikke af vital betydning for prototypen.
+
+På robotten er implementeret motorer med regulering.
+Der er implementeret regulering, som sikrer at robotten kører lige, og at den kan dreje om egen akse. \\
+På robotten er også implementeret et kamera til live streaming. \\
+Ønsket om at robotten har et standardinterface til udvidelse med eksterne moduler er implementeret med en ekstra I2C-indgang samt spændingsforsyning til eksterne moduler.
+Der er dog ikke implementeret noget software der tager højde for eksterne moduler. 
+
+Kommunikationen mellem PC og robot er lavet med mulighed for at sende beskeder begge veje. 
+Derudover er der oprettet et videostream fra robottens kamera, som vises på applikationens grafiske brugerflade. 
+Forbindelsen til videostreamet er dog ustabil, hvilket resulterer i varierende afspilningshastighed.
+
+Det kan altså konkluderes, at EyeRobot er implementeret til et niveau der påviser proof of concept. 
+Produktet er ikke praktisk brugbart, men det beviser, at det er muligt at udvikle et produkt, som ved hjælp af et webcam, kan registrere øjenretning til at styre en robot. 
+    
+%\end{document}

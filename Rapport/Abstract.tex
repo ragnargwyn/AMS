@@ -1,0 +1,19 @@
+
+%\input{preamble_eyerobot}
+
+
+%\begin{document}
+	%	ABSTRACT
+\chapter{Abstract}
+Mobility - and movement impaired people often feel that they are restricted because they have to rely on helpers in order to live their lives.
+The purpose of the project is to develop a home care system, which aims to help these people feel more independant. This is done by creating a robot they are able control themselves - without help from others.
+
+EyeRobot consists of a PC application and an eye-controlled robot. The application uses the PC's webcam to film the user's face. The open source library OpenCV is used to process the movement of the user's eyes, as they move across the graphical user interface. This allows the user to navigate the interface and control the robot with their eyes.\\
+The robot contains a pre-installed camera through which the user can follow every movement of the robot, despite not being able to physically see the robot. \\
+The prototype consists of a PSoC microcontroller and a Raspberry Pi 3. The Raspberry Pi functions as a videostream server and a two-way connector between the PC and the PSoC. It receives the commands via Wifi from the PC and forwards them to the PSoC via an I2C connection. The PSoC's controls and regulates the robot's motors. \\
+The prototype has a port for plug-in modules, but no modules have been implemented.
+
+In conclusion, this paper documents the implementation of a functioning EyeRobot prototype. The eye-control functionality is viable enough to show a proof of concept, but in its current state it is not good enough for commercial use.
+
+
+%\end{document}

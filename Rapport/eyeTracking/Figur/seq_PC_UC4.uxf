@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>64</x>
+      <y>80</y>
+      <w>976</w>
+      <h>424</h>
+    </coordinates>
+    <panel_attributes>title=PC - UC4: Slumber
+obj=&lt;&lt;boundary&gt;&gt;\nEyeCamCtrl~e
+obj=&lt;&lt;boundary&gt;&gt;\nGUI~g
+obj=&lt;&lt;domain&gt;&gt;\nActiveChoice~a
+obj=&lt;&lt;control&gt;&gt;\nPC~p
+obj=&lt;&lt;domain&gt;&gt;\nEyeTracking~t
+obj=&lt;&lt;boundary&gt;&gt;\nWiFi~w
+
+tick=
+p-&gt;&gt;&gt;w:slumber();  on=w,p;
+w.&gt;p:void;
+p-&gt;&gt;&gt;w : readCmd(buffer, size);
+w.&gt;p : length; off=w;
+
+combinedFragment=alt~alt2; p:[if robot closed correct]
+
+p-&gt;&gt;&gt;p+ :exit();
+
+tick=
+..;p:[if robot did not close] 
+
+p-&gt;&gt;&gt;g:displayMessage(slumber failed);  on=g;
+g.&gt;p:void; off=g,p;--
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

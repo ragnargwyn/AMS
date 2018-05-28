@@ -1,0 +1,19 @@
+%\input{preamble_eyerobot}
+
+%\begin{document}
+
+\subsection{I2C}
+
+På Pi'en er der oprettet en I2C-klasse. 
+Til klassen anvendes linux I2C biblioteket i2c-dev.h, som anvender en I2C driver.
+
+Klassens constructor åbner forbindelsen til PSoC'en ved brug af dennes I2C-adresse. 
+Klassens destructor nedlægger forbindelsen. \\
+Der er oprettet to funktioner \textit{sendCmd()} og \textit{readCmd()}, som anvendes til at send og læse over I2C-forbindelsen.
+Da I2C er en half-duplex forbindelse, anvendes en mutex der skal tages, før driveren må anvendes.
+Dette sikrer, at der ikke læses og skives til driveren samtidigt. 
+
+Integrationstesten for I2C kan findes i bilag \ref{appendix:BilagPSoCEnhedstests}.
+
+
+%\end{document}

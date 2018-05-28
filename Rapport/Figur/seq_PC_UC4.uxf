@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>64</x>
+      <y>80</y>
+      <w>976</w>
+      <h>352</h>
+    </coordinates>
+    <panel_attributes>title=PC - UC4: Slumber
+obj=&lt;&lt;boundary&gt;&gt;\nEyeCamCtrl~e
+obj=&lt;&lt;boundary&gt;&gt;\nGUI~g
+obj=&lt;&lt;domain&gt;&gt;\nActiveChoice~a
+obj=&lt;&lt;control&gt;&gt;\nPC~p
+obj=&lt;&lt;domain&gt;&gt;\nEyeTracking~t
+obj=&lt;&lt;boundary&gt;&gt;\nWifi~w
+
+tick=
+p-&gt;&gt;&gt;w:sendCmd(slumber);  on=w,p;
+w.&gt;p:void;
+p-&gt;&gt;&gt;w : readCmd(buffer, size);
+w.&gt;p : length; off=w;
+
+combinedFragment=opt~alt2; p:[read command = slumber_ack]
+
+p-&gt;&gt;&gt;p+ :exit();
+--
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

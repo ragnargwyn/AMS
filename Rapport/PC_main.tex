@@ -1,0 +1,58 @@
+\section{PC main}
+Main har til ansvar at binde de forskellige moduler i systemet sammen, så beskeder ender de rigtige steder.
+Derudover skal programmets opgaver fordeles ud på et passende antal tråde, mens der sørges for, at trådene ikke ødelægger hinandens opgaver.\\
+Opgaverne der udføres på PC'en, for at projektet kan køre, er følgende:
+	\begin{itemize}
+	\item Vise grafisk interface
+	\item Køre eyetracking, så der kan udlæses koordinater
+	\item Udlæse øjenretning med eyetracking og flytte cursoren tilsvarende
+	\item Oprette Wifi-forbindelse mellem PC og Kontrolenhed
+	\item Reagere på interaktion med GUI'et
+	\item Læse beskeder fra Kontrolenheden og reagere på disse
+	\end{itemize}
+
+Til udviklingen af GUI'et, er det valgt at anvende Qt Creators GUI-værktøj.
+For at eksekvere GUI'et er det et krav fra Qt's side, at eksekveringen sker fra main-tråden. 
+Dette gør, at al funktionalitet, der skal ske mens GUI'et bliver vist, skal køre i tråde.
+I implementeringen er det derfor valgt at give hver af ovenstående ansvarspunkter sin egen tråd. 
+Dette gøres, da nogen af opgaverne skal køre konstant - og gerne parallelt - for maksimal ydeevne.
+Andre er reaktive opgaver, der kræver en tråd, som venter på et input.
+
+I de følgende afsnit vil interaktionen mellem trådene blive beskrevet.
+
+\subsection{Styring af cursor med øjendetekteringsmodul}
+For at flytte cursoren ved brug af øjendetekteringsmodulet oprettes to tråde: \\
+Den ene tråd har til ansvar at køre øjendetekteringsmodulet.\\
+Den anden tråd har til ansvar, at udlæse brugerens synsretning fra øjendetekteringsmodulet, matche retningen med koordinater på GUI'et og flytte cursoren tilsvarende.
+
+Koden til dette ansvarsområde kan findes i trådfunktionerne \textit{eyeTrackingFunc()} og \textit{moveCursorFunc()}.
+
+
+\subsection{Oprettelse af Wifi-forbindelse}
+Da oprettelsen af Wifi-forbindelsen skal ske samtidig med at GUI'et kører, oprettes en tråd, som opretter forbindelse til robotten, hvorefter den nedlægges. 
+Dette sker ved at kalde Wifi-klassens connectToPc()-funktion med robottens IP og en default port med nummer 4567. 
+Hvis dette ikke lykkes tælles portnummeret én op, hvorefter forbindelsen forsøges oprettet igen efter et sekund.
+Dette fortsætter, indtil der er oprettet forbindelse, hvorefter brugeren informeres om, at forbindelsen er oprettet.
+
+Koden til dette ansvarsområde findes i trådfunktionen \textit{establishConnectionToRobot()}.
+
+
+\subsection{Reaktion på interaktion med GUI}
+For at kunne reagere på interaktion med GUI'et, er programmet designet således, at der signaleres til main, hvis der sker en ændring på et vilkårligt valgfelt. 
+Signalerne bliver derefter læst af en eventdrevet tråd, hvis eneste ansvar er at læse signalerne og videresende disse til robotten via Wifi. 
+
+Signalerne er implementeret med en instans af klassen MsgQueue, der er delt mellem main og GUI'et.
+Ved at anvende MsgQueue mindskes risikoen for forkert timing, da denne klasse er lavet til at signalere mellem tråde.
+For yderligere dokumentation henvises til sektionen om MsgQueue-klassen. \\
+For at reagere på events, er der i tråden implementeret et event-loop, der har til formål at læse, håndere og derefter slette en besked fra MsgQueue'en.\\
+I GUI-klassen vil der kunne findes kode, der i tilfælde af en valgfeltsændring opretter en besked, hvorefter den indsættes i MsgQueue'en.
+
+Koden til dette ansvarsområde findes i trådfunktionen \textit{clickRespondFunc()}.
+
+\subsection{Reaktion på beskeder fra robot}
+For at kunne reagere på beskeder fra robotten, oprettes en tråd, hvis ansvar er at læse fra Wifi-forbindelsen og reagere tilsvarende.
+I projektet kan der modtages tre forskellige beskeder fra robotten: 'i bevægelse', 'stoppet' og 'gået i dvale'.
+De to første beskeder udløser en besked til GUI'et om, at ændre menu-/bremseikonet.
+Den sidste lukker programmet ned på PC-siden.
+
+Koden til dette ansvarsområde findes i trådfunktionen \textit{receiveFromRobotFunc()}.

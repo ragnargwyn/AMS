@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>32</x>
+      <y>40</y>
+      <w>448</w>
+      <h>560</h>
+    </coordinates>
+    <panel_attributes>title=Oprettele af TCP forbindelse mellem PC og Kontrolenhed
+obj=PC \n(client)~p
+obj=Kontrolenhed \n(server)~k
+
+on=k
+k-&gt;k+ :Opret socket
+tick=
+k-&gt;k+ :Bind socket til valgte port
+tick=
+k-&gt;k+ :Vent på forbindelse
+on=p
+p-&gt;p+ :Opret socket
+tick=
+p-&gt;k :Forbind til kontrolenhenden
+k-&gt;p :Accepter forbindelse
+
+p-&gt;p+ :Signaler forbindelse oprettet; k-&gt;k+ :Signaler forbindelse oprettet
+tick=</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

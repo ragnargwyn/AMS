@@ -1,0 +1,46 @@
+%\input{preamble_eyerobot}
+
+%\begin{document}
+
+\section{Wifi-klassen}
+Wifi-klassens ansvar er at oprette en TCP-forbindelse mellem PC'en og Kontrolenheden, samt sende og modtage beskeder over denne forbindelse.
+
+Til at oprette TCP-forbindelsen anvendes en TCP-socket, der sørger for at påsætte TCP-headeren og overholde TCP-protokollens validering. 
+For at simplificere interfacet med socketen, implementeres oprettelse og nedlæggelse af socketen i Wifi-klassen. 
+Derudover sørger Wifi-klassen for at der ikke opstår timing problemer i kommunikationen.  \\
+Wifi-klassen designes således, at den kan anvendes på både PC’en og Kontrolenheden med hver sin 'opret forbindelse' funktion. 
+Kontrolenheden designes som server for TCP-forbindelsen og PC’en som klient.
+Forbindelses funktionerne er implementeret i Wifi-klassens \textit{connectToPc()} og \textit{connectToRobot()}.
+Oprettelsen af TCP-forbindelsen kan ses på figur \ref{fig:wifi_connect_tcp}.
+
+\begin{figure} [H]
+\centering
+	\includegraphics[width=0.55 \textwidth]{wifi_connect_tcp.pdf}
+	\captionof{figure}{Oprettelse af TCP-forbindelsen mellem PC og Kontrolenhed}
+	\label{fig:wifi_connect_tcp}
+\end{figure}
+
+I Wifi-klassen findes også funktionerne \textit{sendCmd()} og \textit{readCmd()}, der henholdsvis sender og modtager en besked til TCP-socketen. \\
+Da socketen er full-duplex, kan der både skrives til og læses fra socketen på samme tid. 
+Det er dog ikke tilladt at skrive til socketen fra flere steder samtidigt.
+Det samme gælder for læsning.
+Dette sikres i praksis med en mutex, der skal tages før en tråd får rettighed til at sende. Der er en tilsvarende mutex til læsning. \\
+Derudover sikres det, at socketen ikke anvendes før det indikeres, at forbindelsen er oprettet.
+Dette sker ved brug af et betinget signal, som ventes på indtil der er oprettet forbindelse.
+
+
+\subsection{Enhedstest}
+For at teste Wifi-klassen anvendes to virtuelle maskiner, én til PC og én til Kontrolenheden, med en forbindelse, der simulerer Wifi-forbindelsen. 
+Til testen opsættes tre test cases, som skal gennemføres før klassen kan godkendes, disse er som følgende:
+	
+	\begin{enumerate}
+	\item Skal kunne oprette en TCP-forbindelse mellem to maskiner.
+	\item Skal kunne sende en besked fra en maskine som kan læses på den anden.
+	\item Socketen må ikke tilgås før der er oprettet forbindelse.
+	\end{enumerate}
+	
+For udførsel af testen se bilag \ref{appendix:BilagEnhedstestWifi}.
+
+Efter testen kan det konkluderes, at Wifi-klassen opfylder sit ansvar og er sikret mod timing problemer.
+
+%\end{document}
