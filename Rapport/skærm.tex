@@ -6,23 +6,28 @@
 Skærmen er den grafiske brugergrænseflade til systemet. Den skal give brugeren en grafisk præsentation af lydinputtet i mikrofonen. Lyden bliver vist på skærmen ved hjælp af et spektrogram der er 40 pixels bredt, og 240 pixels højt.
 Skærmen er inddelt i 8 bins på hver 40 pixels. Det første bin viser farvespektret hvor det kan ses hvilken farve der beskriver lyddensiteten. De sidste 7 bins viser spektret over det aktuelle lydbillede.
 
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7 \textwidth]{skaerm_spectrum.png}
+	\captionof{figure}{Brugergrænsefladen med 8 bins. 7 der hver repræsenterer lydbilledet for tiden, og et bin der viser farvespektret}
+	\label{fig:skaerm_spectrum}
+\end{figure}
+
+\subsection{Farve}
+Farverne som det aktuelle spektrogram bin der vises, bliver valgt ud fra outputtet fra FHT modulet. Outputtet fra FHT modulet er et array med 128 pladser der hver indeholder et tal mellem 0 og 255. 0 betyder lav densitet og 255 betyder høj.
+For at få dette tal repræsenteret som en farve på displayet, skal tallet omsættes til en RGB565 kode.
+Dette er gjort ved at lave en lookup table på 3X256 pladser, som et python script autogenerer og derved laver en c fil.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7 \textwidth, trim={0cm, 2cm, 0cm, 1.8cm}, clip]{rgb_diagram.pdf}
+	\captionof{figure}{RGB farveblandingsdiagram der bliver brugt til algoritmen til lookup table}
+	\label{fig:rgb_diagram}
+\end{figure}
 
 
+På figur \ref{fig:rgb_diagram} ses diagrammet over farveblandingen der bliver brugt til at lave lookup tabellen. X-aksen er det tal der bliver slået op med, altså outputtet fra FHT modulet. Y-aksen viser RGB koden.
 
-
-Robottens chassis og mekaniske dele er købt som et samlesæt. 
-Motorerne er DC-motorer med gearing, og aksler til montering af hjul.
-Billeder af købt hardware kan findes i bilag \ref{appendix:BilagKoebtHardware}.
-Den dobbelte H-bro, der fulgte med robotten, er af modellen \textit{L298N}, og er integreret på et print med egen strømregulering og sikkerhedsafkobling. 
-Printet har terminaler til forsyningsspænding, styring samt forskellige tilbagekoblinger.
-\newpage
-\subsection{Enhedstest}
-Den købte hardware skal kunne opfylde følgende krav:
-\begin{itemize}
-\item Motorerne skal kunne køre ved en tilsluttet spænding mellem $9V - 12V$
-\item Robotten skal kunne dreje om egen akse
-\item Bilen skal have dimensioner på mindre end 40x40x40 cm - som beskrevet i kravspecifikationen. 
-\end{itemize}
 
 
 
