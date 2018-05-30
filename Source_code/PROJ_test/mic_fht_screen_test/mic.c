@@ -16,6 +16,8 @@
 volatile short FHT_index = 0;
 volatile short full_index = 0;
 
+/**********INIT METHODS ************/
+
 void init_ADC()
 {
 	// ADC0 (PF0) is input
@@ -52,6 +54,8 @@ void initRecorder()
 	sei();
 }
 
+/**********"DO" METHODS ************/
+
 void record()
 {
 	full_index = 0;			// reset recording index
@@ -69,6 +73,8 @@ void analyze()
 	fht_mag_log();			// logarithmic output
 	full_index = 2;			// raise fht_log_out is full
 }
+
+/**********GET METHODS ************/
 
 char * getFHTptr()
 {
@@ -105,20 +111,7 @@ float getSoundPressureLevel()
 	return SPL_REF * mean;
 }
 
-float getOffsetLevel()
-{
-	
-	int sum = 0;
-	float mean = 0;
-	
-	for (int i = 0; i < FHT_N; i++)
-	{
-		sum = sum + fht_input[i];
-	}
-	mean = (float)sum/FHT_N;
-	return mean;
-}
-
+/**********INTERRUPT SERVICE ROUTINES ************/
 
 ISR(TIMER1_COMPB_vect)
 {

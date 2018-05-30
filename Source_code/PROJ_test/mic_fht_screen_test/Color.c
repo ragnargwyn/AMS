@@ -24,10 +24,10 @@ void DisplayGradient()
 
 void DrawBins()
 {
-	char *fht_log_out1 = getFHTptr();
+	char *fht_Ptr = getFHTptr();
 	for(unsigned int i = 0; i < 120; i++)
 	{
-		DrawLine(invvsp, i*2, 40, IntToRGB[fht_log_out1[i+1]][0], IntToRGB[fht_log_out1[i+1]][1], IntToRGB[fht_log_out1[i+1]][2]);
-		DrawLine(invvsp, (i*2)+1, 40, IntToRGB[fht_log_out1[i+1]][0], IntToRGB[fht_log_out1[i+1]][1], IntToRGB[fht_log_out1[i+1]][2]);		
+		DrawLine(invvsp, i*2, 40, IntToRGB[fht_Ptr[i+1]][0], IntToRGB[fht_Ptr[i+1]][1], IntToRGB[fht_Ptr[i+1]][2]);
+		DrawLine(invvsp, (i*2)+1, 40, IntToRGB[fht_Ptr[i+1]][0], IntToRGB[fht_Ptr[i+1]][1], IntToRGB[fht_Ptr[i+1]][2]);		
 	}
 }
