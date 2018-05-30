@@ -1,0 +1,107 @@
+\chapter{Use Cases}
+\label{appendix:usecases}
+\section{Use Case 1 - Start system}
+\begin{center}
+	\begin{tabu} to 1 \textwidth { X[l,1.1]  X[l,3] }
+		\tabulinestyle{1pt}
+		\tabucline[1pt]{}
+		Navn  & Start system  \\
+		\tabucline[1pt on2pt]{}
+		Mål  & At starte systemet op  \\
+		\tabucline[1pt on2pt]{}
+		Initiering  & Bruger åbner PC applikation  \\
+		\tabucline[1pt on2pt]{}
+		Prækondition  & Systemet er i dvaletilstand  \\
+		\tabucline[1pt on2pt]{}
+		Postkondition  & Systemet er i operativ tilstand  \\
+		\tabucline[1pt on2pt]{}
+		Hovedscenarie  & \begin{enumerate}
+							
+							\item PC viser grafisk brugerflade i menuskærmen
+							\item PC viser brugermeddelse om, at forbindelsen til robotten er oprettet.				\\			
+							$ [ $Undtagelse 1: Forbindelse kunne ikke oprettes$ ] $					
+						\end{enumerate}  \\
+		\tabucline[1pt on2pt]{}
+		Undtagelser & 
+			$ [ $Undtagelse 1: Forbindelse kunne ikke oprettes$ ] $
+		\begin{enumerate}
+			\item PC viser brugermeddelelse om, at forbindelsen ikke kunne oprettes
+			\item Use Casen genoptages fra punkt 2
+		\end{enumerate}
+			  \\
+		\tabucline[1pt]{}	
+	\end{tabu}
+\end{center}
+
+
+\section{Use Case 2 - Foretag aktivt valg}
+\begin{center}
+	\begin{tabu} to 1 \textwidth { X[l,1.1]  X[l,3] }
+		\tabulinestyle{1pt}
+		\tabucline[1pt]{}
+		Navn  & Foretag aktivt valg  \\
+		\tabucline[1pt on2pt]{}
+		Mål  & At have foretaget et aktivt valg  \\
+		\tabucline[1pt on2pt]{}
+		Initiering  & Bruger kigger på et valgfelt  \\
+		\tabucline[1pt on2pt]{}
+		Prækondition  & Systemet er i operativ tilstand  \\
+		\tabucline[1pt on2pt]{}
+		Postkondition  & Bruger har gennemført et aktivt valg  \\
+		\tabucline[1pt on2pt]{}
+		Hovedscenarie  & \begin{enumerate}			
+			\item PC viser rød procesindikator i valgfeltet\\
+			$ [ $Undtagelse 1: Bruger kigger væk, før procesindikator er udfyldt$ ] $				
+			\item PC viser grønt valgfelt, når procesindikator er udfyldt
+		\end{enumerate}  \\
+		\tabucline[1pt on2pt]{}
+		Undtagelser & $ [ $Undtagelse 1: Bruger kigger væk før procesindikator har nået max$ ] $
+		\begin{enumerate}
+			\item PC skjuler og nulstiller procesindikator
+			\item Use casen afsluttes
+		\end{enumerate}
+		\\
+		\tabucline[1pt]{}	
+	\end{tabu}
+\end{center}
+\newpage
+
+\section{Use Case 3 - Styr robot}
+Denne del af funktionaliteten beskriver ved brug af storytelling, hvordan robotten navigeres. 
+Brugeren kan navigere robotten, når systemet er i operativ tilstand.
+Robotten styres via input som brugeren giver PC'en ved at kigge på valgfelter på skærmen. 
+Når brugeren kigger på et kontrolvalgfelt lyser det grønt.\\
+\\
+\textbf{Frigear}: Ved at se på midten af skærmen, sættes robotten i frigear.\\
+\textbf{Fremad}: Ved at se på øverste pil, kører robotten fremad.\\
+\textbf{Venstre}: Ved at se på venstre pil, drejer robotten venstre om egen akse.\\
+\textbf{Højre}: Ved at se på højre pil, drejer robotten højre om egen akse.\\
+\textbf{Brems}: Ved at se på det nederste ikon, bremser robotten.\\
+\textbf{Menu}: Når robotten holder stille skiftes bremseikonet ud med et menu-ikon. Her har brugeren mulighed for at tilgå menuen ved "aktivt valg".\\
+\\
+Menuen indeholder en række punkter, som brugeren vælger ved 'aktivt valg'. Brugeren kan forlade menuen ved at vælge 'tilbage' med 'aktivt valg'.
+\newpage
+
+\section{Use Case 4 - Tilgå dvale}
+\begin{center}
+	\begin{tabu} to 1 \textwidth { X[l,1.1]  X[l,3] }
+		\tabulinestyle{1pt}
+		\tabucline[1pt]{}
+		Navn  & Tilgå dvale  \\
+		\tabucline[1pt on2pt]{}
+		Mål  & Systemet er i dvaletilstand \\
+		\tabucline[1pt on2pt]{}
+		Initiering  & Startes af bruger  \\
+		\tabucline[1pt on2pt]{}
+		Prækondition  & Menuen er åben  \\
+		\tabucline[1pt on2pt]{}
+		Postkondition  & Applikationen er lukket applikation, og robotten er i dvale  \\
+		\tabucline[1pt on2pt]{}
+		Hovedscenarie  & \begin{enumerate}
+			\item Bruger vælger menupunktet dvale/sluk med 'aktivt valg'
+			\item Robotten går i dvale		
+			\item PC lukker Applikationen
+		\end{enumerate}  \\
+		\tabucline[1pt]{}	
+	\end{tabu}
+\end{center}

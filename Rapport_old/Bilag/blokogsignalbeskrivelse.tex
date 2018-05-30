@@ -1,0 +1,113 @@
+\chapter{Blok- og signalbeskrivelse}
+\label{appendix:signalbeskrivelse}
+
+I tabel \ref{tab:blokogsignalbeskrivelse} vil blokke, blokfunktioner og porte, fra robot IBD'et, samt signalerne mellem dem, blive beskrevet.
+Hver blok har et antal porte, hvor portens navn ses i tabellen og hvilken type port det er.
+Ud for hver port er kort beskrevet dens formål og hvad der "flyder" i den.
+
+	\begin{longtable}{ p{.18\textwidth} p{.27\textwidth} p{.2\textwidth} p{.25\textwidth} } 
+		\hline
+		\multicolumn{1}{l}{\textbf{Navn}} & \textbf{Funktion} & \textbf{Områder} &\multicolumn{1}{l}{\textbf{Kommentar}}  \\\hline
+		\endhead
+		\endfirsthead
+		\hline \multicolumn{4}{r}{Fortsættes på næste side}	\\\hline
+		\endfoot
+		\endlastfoot
+		\hline
+		\multicolumn{4}{c}{\textbf{Signaler mellem PC og Kontrolenhed}} \\\hline
+		\multicolumn{1}{l}{\textbf{Navn}} & \textbf{Funktion} & \textbf{Områder} &\multicolumn{1}{l}{\textbf{Kommentar}}  \\\hline
+		\textbf{Wifi} & Det trådløse datatransmissionssignal, der sender/modtager data mellem PC og Robot. Sender data via UDP- og TCP-transportprotokollerne &
+		\begin{tabular}{l}
+		$2.4 MHz$\\
+		max $100mW$\\
+		\end{tabular} & Wifi på både Control Unit og PC er indbyggede moduler. \\\hline
+		\multicolumn{4}{c}{\textbf{Andre signaler til og fra Robot}} \\\hline
+		\multicolumn{1}{l}{\textbf{Navn}} & \textbf{Funktion} & \textbf{Områder} &\multicolumn{1}{l}{\textbf{Kommentar}}  \\\hline
+		\textbf{Battery} & Robottens forsyningsspænding.  & 
+		\begin{tabular}{l}
+		$9.6 V \pm 2V$\\
+		\end{tabular} & Robottens forsyningsspænding fra batteriet til Power Supply-blokken. \\\hdashline 
+		\textbf{motorPwr} & Forsyning til motorerne og H-broen på Robot  & 
+		\begin{tabular}{l}
+		$9.6 V \pm 2V$\\
+		\end{tabular} & Forsyning direkte fra batteriet. H-broen indeholder en spændingsregulator til logiske signaler.\\\hdashline 
+		\textbf{Vcc} & Spændings-forsyning fra Power Supply til 5V enhederne. & 
+		\begin{tabular}{l}
+		 $5 V \pm 0.5 V$\\
+		 max $3 A$\\
+		\end{tabular} & 	
+		\begin{tabular}{l}
+		Sikringer:\\
+		 Pi max	$2 A$\\
+		 PSoC max $200 mA$\\
+		\end{tabular} \\\hdashline
+		\textbf{MotorCtrl} & I2C-signal mellem Control unit og Motor Ctrl-blokken  &
+		\begin{tabular}{l}
+		$ 0-3.3 V \pm 0.5 V $\\
+		max $ 30 mA$\\
+		$100kbps \pm 5 \%$\\
+		\end{tabular}& \phantom{ }  \\\hdashline
+		\textbf{extPwr} & Spændings-forsyning til eksternt tilkoblede enheder.  &
+		\begin{tabular}{l}
+		 $5V \pm 0.5 V$\\
+		 max	$500 mA$\\
+		\end{tabular} & Sikringen kan skiftes, hvis den eksterne enhed bruger mere strøm. \\\hdashline
+		\textbf{extData} & I2C-signal til eksternt tilkoblede enheder. &
+		\begin{tabular}{l}
+		$0-3.3 V \pm 0.5 V$\\
+		$100 kbps \pm 5 \% $\\
+		max $ 30 mA$\\
+		\end{tabular} & Eksterne enheder kan kun optræde som slaves på I2C \\\hdashline
+		\textbf{Robot Video} & Signalet fra Robot kamera til Robot, hvor der sendes billeder i JPEG-format & 
+		\begin{tabular}{l}
+		max $100 fps$\\
+		\end{tabular} & Forbindelsen kører på en CSI2-bus, som i denne rapport behandles som envejskommunikation. \\
+		\hline
+		\multicolumn{4}{c}{\textbf{Signaler mellem MotorCtrlUnit og Motorer}} \\\hline
+		\multicolumn{1}{l}{\textbf{Navn}} & \textbf{Funktion} & \textbf{Områder} &\multicolumn{1}{l}{\textbf{Kommentar}}  \\\hline
+		\textbf{EnableLeft} & PWM-signal, som styrer hjulene i venstre side. & 
+		\begin{tabular}{l}
+		 $ 0-5 V \pm 0.5 V$\\
+		 $ 100 \mu A \pm 10 \mu A $\\ 
+		 $ 19 kHz \pm 3 kHz$\\
+		\end{tabular} & \phantom{} \\\hdashline
+		\textbf{EnableRight} & PWM-signal, som styrer hjulene i højre side. & 
+		\begin{tabular}{l}
+		 $ 0-5 V \pm 0.5 V$\\
+		 $ 100 \mu A \pm 10 \mu A $\\ 
+		 $ 19 kHz \pm 3 kHz$\\
+		\end{tabular}
+		& \phantom{} \\\hdashline
+		\textbf{RightBackward} & Logisk signal, som sammen med RightForward styrer retningen på motorerne i højre side. & 
+		\begin{tabular}{l}
+		$ 0-5 V \pm 0.5 V $ \\
+		$ 100 \mu A \pm 10 \mu A $\\ 
+		\end{tabular} & \phantom{}  \\\hdashline
+		\textbf{RightForward} & Se RightBackward & 
+		\begin{tabular}{l}
+		$ 0-5 V \pm 0.5 V $ \\
+		$ 100 \mu A \pm 10 \mu A $\\ 
+		\end{tabular} & \phantom{}  \\\hdashline
+		\textbf{LeftBackward} & Logisk signal, som sammen med LeftForward styrer retningen på motorerne i venstre side. & 
+		\begin{tabular}{l}
+		$ 0-5 V \pm 0.5 V $\\
+		$ 100 \mu A \pm 10 \mu A $\\
+		\end{tabular}& \phantom{}  \\\hdashline
+		\textbf{LeftForward} & Se LeftBackWard & 
+		\begin{tabular}{l}
+		$ 0-5 V \pm 0.5 V $\\
+		$ 100 \mu A \pm 10 \mu A $\\
+		\end{tabular}& \phantom{}  \\\hdashline
+		\textbf{leftFeedback} & Feedback-signal fra venstre forhjul & 
+		\begin{tabular}{l}
+		$ 0-5 V \pm 0.5 V $\\
+		$ 100 \mu A \pm 10 \mu A $\\
+		\end{tabular}& \phantom{}  \\\hdashline
+		\textbf{rightFeedback} & Se LeftBackWard & 
+		\begin{tabular}{l}
+		$ 0-5 V \pm 0.5 V $\\
+		$ 100 \mu A \pm 10 \mu A $\\
+		\end{tabular}& \phantom{}  \\\hdashline
+		\caption{Beskrivelse af alle signaler i hele systemet}
+		\label{tab:blokogsignalbeskrivelse}
+	\end{longtable}
