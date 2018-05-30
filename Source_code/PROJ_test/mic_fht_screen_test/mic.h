@@ -11,7 +11,7 @@
 
 #define FHT_N 256
 #define LOG_OUT 1
-#define OCTAVE 1
+#define OCTAVE 0
 
 #define SAMPLE_RATE 20000
 #define DELTA_F SAMPLE_RATE/FHT_N
@@ -28,7 +28,6 @@ void analyze();
 char * getFHTptr();
 float getTopFrequency();
 float getSoundPressureLevel();
-float getOffsetLevel();
 
 
 
