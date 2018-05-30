@@ -2,7 +2,7 @@
  * mic.c
  *
  * Created: 24-May-18 15:51:14
- *  Author: madsl
+ *  Author: madslund
  */ 
 
 #include "mic.h"
@@ -73,9 +73,9 @@ void analyze()
 
 float getTopFrequency()
 {
-	int max = fht_log_out[0], pos = 0;
+	int max = fht_log_out[1], pos = 1;
 	
-	for (int i = 1; i < FHT_N/2 ; i++ )
+	for (int i = 2; i < FHT_N/2 ; i++ )
 	{
 		if (fht_log_out[i]>max)
 		{
@@ -97,8 +97,23 @@ float getSoundPressureLevel()
 		sum = sum + fht_log_out[i];
 	}
 	mean = (float)sum/FHT_N/2;
-	return SPL_REF - (FHT_N-mean);
+	return SPL_REF * mean;
 }
+
+float getOffsetLevel()
+{
+	
+	int sum = 0;
+	float mean = 0;
+	
+	for (int i = 0; i < FHT_N; i++)
+	{
+		sum = sum + fht_input[i];
+	}
+	mean = (float)sum/FHT_N;
+	return mean;
+}
+
 
 ISR(TIMER1_COMPB_vect)
 {

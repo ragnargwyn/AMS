@@ -2,7 +2,7 @@
  * mic.h
  *
  * Created: 24-May-18 15:51:47
- *  Author: madsl
+ *  Author: madslund
  */ 
 
 
@@ -16,7 +16,7 @@
 #define SAMPLE_RATE 20000
 #define DELTA_F SAMPLE_RATE/FHT_N
 
-#define SPL_REF 96
+#define SPL_REF 6
 
 void initRecorder();
 void init_ADC();
@@ -27,6 +27,7 @@ void analyze();
 
 float getTopFrequency();
 float getSoundPressureLevel();
+float getOffsetLevel();
 
 
 

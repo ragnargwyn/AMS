@@ -2,7 +2,7 @@
  * color.c
  *
  * Created: 24-May-18 11:36:57
- *  Author: madsl
+ *  Author: madslund
  */ 
 #include "colorCalc.h"
 
