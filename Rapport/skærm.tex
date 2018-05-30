@@ -1,0 +1,29 @@
+\input{preamble_eyerobot}
+
+\begin{document}
+
+\section{Skærm}
+Skærmen er den grafiske brugergrænseflade til systemet. Den skal give brugeren en grafisk præsentation af lydinputtet i mikrofonen. Lyden bliver vist på skærmen ved hjælp af et spektrogram der er 40 pixels bredt, og 240 pixels højt.
+Skærmen er inddelt i 8 bins på hver 40 pixels. Det første bin viser farvespektret hvor det kan ses hvilken farve der beskriver lyddensiteten. De sidste 7 bins viser spektret over det aktuelle lydbillede.
+
+
+
+
+
+Robottens chassis og mekaniske dele er købt som et samlesæt. 
+Motorerne er DC-motorer med gearing, og aksler til montering af hjul.
+Billeder af købt hardware kan findes i bilag \ref{appendix:BilagKoebtHardware}.
+Den dobbelte H-bro, der fulgte med robotten, er af modellen \textit{L298N}, og er integreret på et print med egen strømregulering og sikkerhedsafkobling. 
+Printet har terminaler til forsyningsspænding, styring samt forskellige tilbagekoblinger.
+\newpage
+\subsection{Enhedstest}
+Den købte hardware skal kunne opfylde følgende krav:
+\begin{itemize}
+\item Motorerne skal kunne køre ved en tilsluttet spænding mellem $9V - 12V$
+\item Robotten skal kunne dreje om egen akse
+\item Bilen skal have dimensioner på mindre end 40x40x40 cm - som beskrevet i kravspecifikationen. 
+\end{itemize}
+
+
+
+\end{document}
