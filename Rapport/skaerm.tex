@@ -16,7 +16,7 @@ Skærmen er inddelt i 8 søjler på hver 40 pixels. Den første søjle viser far
 \subsection{Farve}
 Farverne som den aktuelle spektrogram søjle der vises, bliver valgt ud fra outputtet fra FHT modulet. Outputtet fra FHT modulet er et array med 128 pladser der hver indeholder et tal mellem 0 og 255. 0 betyder lav densitet og 255 betyder høj.
 For at få dette tal repræsenteret som en farve på displayet, skal tallet omsættes til en RGB565 kode.
-Dette er gjort ved at lave en lookup table på 3X256 pladser, som et python script autogenerer og derved laver en c fil.
+Dette er gjort ved at lave en lookup tabel på 3X256 pladser, som et python script autogenerer og derved laver en c fil.
 
 \begin{figure} [H]
 	\centering
@@ -31,7 +31,7 @@ På figur \ref{fig:rgb_diagram} ses diagrammet over farveblandingen der bliver b
 
 \subsection{Skærmdriver}
 Det viste billede på skærmen skal hele tiden flytte søjlerne én plads til venstre (x-aksen), og skrive en ny søjle ud til højre. Søjlen helt til højre skal vise farvespektret konstant.
-Y-aksen repræsenterer frekvenserne fra 500 Hz op til 10 kHz. se figur \ref{fig:skaerm_spectrum_forklaring}.
+Y-aksen repræsenterer frekvenserne fra 50 Hz op til 10 kHz. se figur \ref{fig:skaerm_spectrum_forklaring}.
 
 \begin{figure} [H]
 	\centering
@@ -40,12 +40,12 @@ Y-aksen repræsenterer frekvenserne fra 500 Hz op til 10 kHz. se figur \ref{fig:
 	\label{fig:skaerm_spectrum_forklaring}
 \end{figure}
 
-Skærm driveren har taget udgangspunkt i den driver der blev lavet i lab3, men er blevet modificeret til dette projekts behov. 
+Skærmdriveren har taget udgangspunkt i den driver der blev lavet i lab3, men er blevet modificeret til dette projekts behov. 
 Der er derfor lavet fire nye funktioner i driveren:
 \begin{itemize}
 	\item \textit{DrawLine} Skal tegne en linje der er én pixel høj.
 	\item \textit{InitScrolling} Skal initiere scrolling på skærmen.
-	\item \textit{MoveDisplay} Skal flytte den gamle søjle én plas, så der kan skrives en ny på skærmen.
+	\item \textit{MoveDisplay} Skal flytte den gamle søjle én plads, så der kan skrives en ny på skærmen.
 	\item \textit{UpdateDisplayPointer} skal fortælle skærmen hvor meget den skal flyttes.
 \end{itemize}
 
@@ -95,15 +95,5 @@ Dette vil give en pæn gradient hvor farven der repræsenterer 0 (dyb blå) er n
 
 \subsubsection{DrawBins}
 Denne funktion tegner to linjer der repræsenterer et frekvensbin med den farve der beskriver lydstyrken. Outputtet fra FHT modulet giver de tal der beskriver lydstyrken for hver bin, og de kan derfor oversættes ved hjælp af lookup tabellen, der blev autogenereret af et python script, til den RGB565 kode der skal vises på skærmen.
-
-\subsection{Test}
-For at teste driverne til skærmen er der lavet et "dummy array" der skal simulere outputtet fra FHT modulet. Dette array lavet ved at lade et python script autogenere en c fil "DummyFHT.c". Denne fil indeholder er array (fht\_log\_out) med 128 pladser, med hver et random tal mellem 0 og 255. Disse tal repræsenterer en farve der skal vises på skærmen ved hjælp af lookup tabellen med RGB565 koderne, se figur \ref{fig:Skaerm_dummy_test}
-
-\begin{figure} [H]
-	\centering
-	\includegraphics[width=0.7 \textwidth]{Skaerm_dummy_test.jpg}
-	\captionof{figure}{Skærmtest ved hjælp af DummyFHT fil}
-	\label{fig:Skaerm_dummy_test}
-\end{figure}
 
 %\end{document}

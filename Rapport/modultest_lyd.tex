@@ -60,3 +60,13 @@ Variablen $freq$ stemmer også denne gang overens med plottet.
 		\label{fig:rec_plot}
 	\end{center}
 \end{figure}
+
+\subsection{Modultest af skærm}
+For at teste driverne til skærmen er der lavet et "dummy array" der skal simulere outputtet fra FHT modulet. Dette array lavet ved at lade et python script autogenere en c fil "DummyFHT.c". Denne fil indeholder er array (fht\_log\_out) med 128 pladser, med hver et random tal mellem 0 og 255. Disse tal repræsenterer en farve der skal vises på skærmen ved hjælp af lookup tabellen med RGB565 koderne, se figur \ref{fig:Skaerm_dummy_test}
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7 \textwidth]{Skaerm_dummy_test.jpg}
+	\captionof{figure}{Skærmtest ved hjælp af DummyFHT fil}
+	\label{fig:Skaerm_dummy_test}
+\end{figure}

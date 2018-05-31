@@ -1,12 +1,12 @@
 \section{Diskussion}
-Sammenlignet med ideen bag projekten, fungerer systemet som ønsket, bortset fra loggen, som ikke er helt færdig. 
+Sammenlignet med ideen bag projekten, fungerer systemet som ønsket, bortset fra loggen, som ikke er implementeret færdigt. 
 Der er dog nogle beslutninger i designet, som kan diskuteres. 
 
 For at få et fuldt spektrum med ift. den menneskelige hørelse, kunne samplefrekvensen have været højere. 
 Fx 48 $kHz$. 
-Frekvensopløsningen, ville dog blive ringere. Til gengæld kunne FHT bibliotekets indbyggede oktav-output bruges. Dette ville otte bins med frekvensafhængig størrelse.
+Frekvensopløsningen, ville dog blive ringere. Til gengæld kunne FHT bibliotekets indbyggede oktav-output bruges. Dette ville lave otte bins med frekvensafhængig størrelse.
 
-Anti-aliaseringen i systemet kunne med fordel gøres stejlere. Det ses tydeligt ved sweep-signaler over $10 kHz$, at indholdet spejles ned nytteområdet. 
+Anti-aliaseringen i systemet kunne med fordel gøres stejlere. Det ses tydeligt ved sweep-signaler over $10 kHz$, at indholdet spejles ned i nytteområdet.
 
 \subsection{Fremtidigt arbejde}
 De første to features, som skulle laves, ville være:
@@ -27,11 +27,11 @@ Alt i alt ville disse opgraderinger højst sandsynligt resultere i, at systemet 
 \section{Konklusion}
 Det er i projektet lykkedes at implementere et realtidsspektrogram til en arduino2560. 
 Spektrogrammet udskrives løbende på et farvedisplay med en intuitivt forståelig gradient.  
-Log-systemet, som skulle skrive data til et SD kort, virker dog ikke. 
+Log-systemet, som skulle skrive data til et SD kort, virker dog ikke, da der ellers skulle være blevet lavet en komplet revidering af hele driver-systemet med henblik på dybere filhåndtering. 
 
-I projektet anvendes viden fra flere af elektro-linjens andre kurse, især \textit{Digita Signal Analyse, Grænseflader til den Fysiske Verden og Indlejret Signal Behandling}, samt viden fra AMS-øvelserne \textit{JTAG, Graphic Display og SD Card}.
+I projektet anvendes viden fra flere af elektro-linjens andre kurser, især \textit{Digital Signal Analyse, Grænseflader til den Fysiske Verden og Indlejret Signal Behandling}, samt viden fra AMS-øvelserne \textit{JTAG, Graphic Display og SD Card}.
 
 Opløsningen i tidsdomænet, såvel som i frekvensdomænet er lavere end ønsket, men resultatet giver et godt billede af støjniveau og frekvensindhold i lydsignalet. 
 
-Ud fra hukommelses-forbruget, og de øvrige begrænsninger, kan systemets ydeevne ikke hæves betydeligt, uden at skulle skifte processor. 
+Ud fra hukommelses-forbruget, og de øvrige begrænsninger, kan systemets ydeevne ikke hæves betydeligt, uden at skulle skifte microcontroller. 
  
