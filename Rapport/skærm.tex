@@ -4,17 +4,17 @@
 
 \section{Skærm}
 Skærmen er den grafiske brugergrænseflade til systemet. Den skal give brugeren en grafisk præsentation af lydinputtet i mikrofonen. Lyden bliver vist på skærmen ved hjælp af et spektrogram der er 40 pixels bredt, og 240 pixels højt.
-Skærmen er inddelt i 8 søjler på hver 40 pixels. Den første søjle viser farvespektret hvor det kan ses hvilken farve der beskriver lyddensiteten. De sidste 7 bins viser spektret over det aktuelle lydbillede.
+Skærmen er inddelt i 8 søjler på hver 40 pixels. Den første søjle viser farvespektret hvor det kan ses hvilken farve der beskriver lyddensiteten. De sidste syv søjler viser spektret over det aktuelle lydbillede. Se figur \ref{fig:skaerm_spectrum}
 
 \begin{figure} [H]
 	\centering
 	\includegraphics[width=0.7 \textwidth]{skaerm_spectrum.png}
-	\captionof{figure}{Brugergrænsefladen med 8 bins. 7 der hver repræsenterer lydbilledet for tiden, og et bin der viser farvespektret}
+	\captionof{figure}{Brugergrænsefladen med 8 søjler. 7 der hver repræsenterer lydbilledet for tiden, og en der viser farvespektret}
 	\label{fig:skaerm_spectrum}
 \end{figure}
 
 \subsection{Farve}
-Farverne som det aktuelle spektrogram bin der vises, bliver valgt ud fra outputtet fra FHT modulet. Outputtet fra FHT modulet er et array med 128 pladser der hver indeholder et tal mellem 0 og 255. 0 betyder lav densitet og 255 betyder høj.
+Farverne som den aktuelle spektrogram søjle der vises, bliver valgt ud fra outputtet fra FHT modulet. Outputtet fra FHT modulet er et array med 128 pladser der hver indeholder et tal mellem 0 og 255. 0 betyder lav densitet og 255 betyder høj.
 For at få dette tal repræsenteret som en farve på displayet, skal tallet omsættes til en RGB565 kode.
 Dette er gjort ved at lave en lookup table på 3X256 pladser, som et python script autogenerer og derved laver en c fil.
 
@@ -29,6 +29,71 @@ Dette er gjort ved at lave en lookup table på 3X256 pladser, som et python scri
 På figur \ref{fig:rgb_diagram} ses diagrammet over farveblandingen der bliver brugt til at lave lookup tabellen. X-aksen er det tal der bliver slået op med, altså outputtet fra FHT modulet. Y-aksen viser RGB koden.
 
 
+\subsection{Skærmdriver}
+Det viste billede på skærmen skal hele tiden flytte søjlerne én plads til venstre (x-aksen), og skrive en ny søjle ud til højre. Søjlen helt til højre skal vise farvespektret konstant.
+Y-aksen repræsenterer frekvenserne fra 500 Hz op til 10 kHz. se figur \ref{fig:skaerm_spectrum_forklaring}.
 
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7 \textwidth]{skaerm_spectrum_forklaring.png}
+	\captionof{figure}{Søjlerne flytter hele tiden én plads til venstre, så en ny søjle kan tegnes på skærmen. Y-aksen viser en farve der repræsenterer lydstyrken for hver frekvens}
+	\label{fig:skaerm_spectrum_forklaring}
+\end{figure}
+
+Skærm driveren har taget udgangspunkt i den driver der blev lavet i lab3, men er blevet modificeret til dette projekts behov. 
+Der er derfor lavet fire nye funktioner i driveren:
+\begin{itemize}
+	\item \textit{DrawLine} Skal tegne en linje der er én pixel høj.
+	\item \textit{InitScrolling} Skal initiere scrolling på skærmen.
+	\item \textit{MoveDisplay} Skal flytte den gamle søjle én plas, så der kan skrives en ny på skærmen.
+	\item \textit{UpdateDisplayPointer} skal fortælle skærmen hvor meget den skal flyttes.
+\end{itemize}
+
+\subsubsection{DrawLine}
+To linjer repræsenterer én frekvens. Derfor skulle der bruges en funktion der kunne tegne én linje på en given bredde med en farve der repræsenter lyd intensiteten.
+Funktionen er derfor lavet således at den får et X, Y koordinat med hvor den skal starte med at tegne, længden på linjen, der i dette projekts tilfælde altid er 40 pixels, og til sidst RGB565 farvekoden.
+
+\subsubsection{InitScrolling}
+Skærmen skal hele tiden opdatere sig selv, ved at rykke søjlerne én plads til venstre, og tegne en ny i højre side. For at undgå at skrive hele skærmen om for hver opdatering, bliver funktionen "Vertical Scrolling" fra ILI9341 udnyttet.
+
+Figur \ref{fig:scrolling} viser grafisk hvordan skærmen inddeles når scrolling effekten bruges. Eftersom denne skærm skal have en konstant søjle i højre side (set som bunden i forhold til ILI9341) med farvespektret, er der derfor valgt at have "fixed area", i dette tilfælde BFA.
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7 \textwidth]{scrolling.png}
+	\captionof{figure}{Grafisk billede på hvordan skærmen er opdelt når scrolling effekten bruges}
+	\label{fig:scrolling}
+\end{figure}
+
+Figur \ref{fig:scrolling_kommandoer} viser hvordan vertical scrolling initieres, og hvilke parametre der sendes.
+Der skal altså skrives en kommando (0x33) først, og derefter seks parametre. I dette tilfælde er de seks parametre:
+De første to er 0, da der ikke skal være et fixed area i venstre side (toppen). De næste to er 280 (0x01 og 0x18), da skærmen er 320 pixels bred, og 40 af dem skal reserveres til farvespektret i højre side. De sidste to parametre er 40 (0x00 og 0x28), hvilket er det fixed area der skal være i højre side (bunden).
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7 \textwidth]{scrolling_kommandoer.png}
+	\captionof{figure}{Tabellen der viser hvordan vertical scrolling initieres}
+	\label{fig:scrolling_kommandoer}
+\end{figure}
+
+\subsubsection{MoveDisplay}
+Funktionen MoveDisplay er den funktion der får skærmbilledet til at scrolle. Denne funktion opdaterer scrolling startadressen. Funktionen skal altså kaldes hver gang skærmbilledet skal flyttes en plads til venstre. 
+
+\subsubsection{UpdateDisplayPointer}
+For at få skærmbilledet til at flytte 40 pixels hver gang der skal udskrives nyt data, er der brug for en funktion der kan hæve startadressen med 40 pixels hver gang, Ellers ville skærmens startadresse være den samme, og skærmen ville derfor ikke flytte sig. Dette gøres ved at hæve det tal der bruges i MoveDisplay til at flytte startadressen med de antal pixels skærmen ønskes at flyttes. Der bliver i denne funktion også taget højde for at der ikke kan scrolles længere ud end skærmen er bred. Variablen skal derfor resettes hvis den bliver højere en de 320 pixels som skærmen er bred.
+
+\subsection{Billeddriver}
+Der er lavet en driver til at tegne billedet på skærmen. Denne driver indeholder to funktioner:
+\begin{itemize}
+	\item \textit{DisplayGradient} Skal tegne farvespektret i højre side.
+	\item \textit{DrawBins} Skal tegne to linjer der repræsenterer ét frekvensbin.
+\end{itemize}
+
+\subsubsection{DisplayGradient}
+Denne funktion skal tegne søjlen med farvespektret i højre side. Det gør den ved at tegne en linje ad gangen, startende fra 0 og op, med den RGB565 kode der hører til det linjenummer den tegner.
+Dette vil give en pæn gradient hvor farven der repræsenterer 0 (dyb blå) er nederst, og den farve der repræsenterer den højeste densitet (Rød) er øverst.
+
+\subsubsection{DrawBins}
+Denne funktion tegner to linjer der repræsenterer et frekvensbin med den farve der beskriver lydstyrken. Outputtet fra FHT modulet giver de tal der beskriver lydstyrken for hver bin, og de kan derfor oversættes ved hjælp af lookup tabellen, der blev autogenereret af et python script, til den RGB565 kode der skal vises på skærmen.
 
 \end{document}
