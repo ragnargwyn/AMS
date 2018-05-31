@@ -1,4 +1,35 @@
 \section{Diskussion}
+Sammenlignet med ideen bag projekten, fungerer systemet som ønsket, bortset fra loggen, som ikke er helt færdig. 
+Der er dog nogle beslutninger i designet, som kan diskuteres. 
 
+For at få et fuldt spektrum med ift. den menneskelige hørelse, kunne samplefrekvensen have været højere. 
+Fx 48 $kHz$. 
+Frekvensopløsningen, ville dog blive ringere. Til gengæld kunne FHT bibliotekets indbyggede oktav-output bruges. Dette ville otte bins med frekvensafhængig størrelse.
+
+Anti-aliaseringen i systemet kunne med fordel gøres stejlere. Det ses tydeligt ved sweep-signaler over $10 kHz$, at indholdet spejles ned nytteområdet. 
+
+\subsection{Fremtidigt arbejde}
+De første to features, som skulle laves, ville være:
+En log der gemmes på et SD kort.
+Fastlagt opdateringsrate på displayet. Dette ville kunne implementeres med en timer. 
+
+Skulle der arbejdes videre med projektet, kunne nogle af systemets elementer med fordel skiftes ud. 
+En dedikeret audio codek ville kunne sample med en større samplefrekvens i højere opløsning. 
+Dette ville forbedre systemet markant. 
+Dog skulle der også bruges en længere algoritme, før den forbedrede opløsning ikke gør frekvensopløsningen dårligere.
+
+Skærmen kunne skiftes ud til fordel for en enhed med større farvedybde, evt. RGB i 888 format i stedet for 565. 
+Derudover kunne højere opløsning medvirke, at der ikke gik information tabt, i form af de 8 frekvensbins, der ignoreres. 
+En større skærmopløsning kræver dog et bredere interface, så skærmen kan opdateres hurtigere. 
+
+Alt i alt ville disse opgraderinger højst sandsynligt resultere i, at systemet ikke ville kunne implementeres til en mega2560.
 
 \section{Konklusion}
+Det er i projektet lykkedes at implementere et realtidsspektrogram til en arduino2560. 
+Spektrogrammet udskrives løbende på et farvedisplay med en intuitivt forståelig gradient.  
+Log-systemet, som skulle skrive data til et SD kort, virker dog ikke. 
+
+Opløsningen i tidsdomænet, såvel som i frekvensdomænet er lavere end ønsket, men resultatet giver et godt billede af støjniveau og frekvensindhold i lydsignalet. 
+
+Ud fra hukommelses-forbruget, og de øvrige begrænsninger, kan systemets ydeevne ikke hæves betydeligt, uden at skulle skifte processor. 
+ 
