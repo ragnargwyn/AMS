@@ -1,22 +1,28 @@
-\input{preamble_eyerobot}
+%\input{preamble_eyerobot}
 
-\begin{document}
+%\begin{document}
 	
 \section{Indledning}
+Vi er omgivet af lyd. Hele tiden. Vi registrere det måske ikke altid fordi vi er vandt til at høre dem, eller fordi de er udenfor vores hørbare spektrum. Med de er der hele tiden.
+Dette projekt er lavet, så det nu er muligt at få et grafisk overblik over den lyd der omgiver om.
+Dette lille device giver dig mulighed for at få et grafisk overblik over hvilke lyde der er omkring dig fra 500 Hz til 10kHz, og hvor kraftige de er.
+Det eneste du skal gøre er at tilslutte strøm og nyde synet af lyden blive præsenteret visuelt for dig.
+Du kan tilmed tage SD kortet ud, sætte det i din computer og se en log over lyden i det tidsrum devicet har været tændt.
 
-%Behovet for intelligent hjælp i hjemmet er voksende. Særligt bevægelseshæmmede mennesker - som mennesker, der lider af ALS - har et stort behov for hjælp, men det er dyrt at have personale ansat til at hjælpe dem. \\ 
-%Hjælpeenheder til handicappede er også dyre at anskaffe, og begrænser sig ofte til én enkelt funktion. Med EyeRobot skal det være slut med disse begrænsninger.
-%
-%Den lille hjælpende robot styres med øjnene, så selv personer med ALS vil føle begrænsningerne for den fysiske bevægelighed blive lettet. 
-%Robotten sender samtidigt videofeed tilbage, så brugeren kan se, hvad den laver, uanset hvor den er.
-%
-%EyeRobots software skal installeres på brugerens computer, og kræver kun et webcam. \\
-%På grund af EyeRobots universal port, kan den let udbygges med mange forskellige moduler, så den kan tilpasset den enkelte brugers behov, uden at brugeren skal betale for funktionalitet han/hun ikke har brug for. 
-%Hvis du eksempelvis har brug for en ekstra arm, så kan der nemt tilkobles en robot-arm til EyeRobot \cite{moscow}.
-%
-%Figur \ref{fig:Rigt_billede} viser EyeRobots koncept.
+\cite{fht_arduino}
+
+\begin{figure}[H]
+	\center
+	\includegraphics[width = 0.6\textwidth]{Figur/Rigt_billede.png}
+	\caption{Sådan virker systemet. Systemet "lytter" og giver en grafisk præsentation af lyden til brugeren, som også kan sætte SD kortet i sin PC og se data der}
+	\label{fig:ibd}
+\end{figure}
+
 
 \section{Systemoverblik}
+Systemet er bygget op omkring en arduino mega2560. På arduinoen sidder en mikrofon, et ITDB02 Arduino MEGA shield 2.0 med en skærm og en SD kort læser.
+
+På \ref{fig:ibd} ses blokdiagrammet for systemet, som viser hvordan mikrofon, skærm og SD kort læser sidder sammen med Arduinoen.
 
 \begin{figure}[H]
 	\center
@@ -25,6 +31,7 @@
 	\label{fig:ibd}
 \end{figure}
 
+Figur \ref{fig:uml} viser klassediagrammet. De forskellige klasser vil blive beskrevet i de afsnit der omhandler delene.
 
 \begin{figure}[H]
 	\center
@@ -33,4 +40,4 @@
 	\label{fig:uml}
 \end{figure}
 
-\end{document}
+%\end{document}

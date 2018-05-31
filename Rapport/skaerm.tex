@@ -96,4 +96,8 @@ Dette vil give en pæn gradient hvor farven der repræsenterer 0 (dyb blå) er n
 \subsubsection{DrawBins}
 Denne funktion tegner to linjer der repræsenterer et frekvensbin med den farve der beskriver lydstyrken. Outputtet fra FHT modulet giver de tal der beskriver lydstyrken for hver bin, og de kan derfor oversættes ved hjælp af lookup tabellen, der blev autogenereret af et python script, til den RGB565 kode der skal vises på skærmen.
 
+\subsection{Test}
+For at teste driverne til skærmen er der lavet et "dummy array" der skal simulere outputtet fra FHT modulet. Dette array lavet ved at lade et python script autogenere en c fil "DummyFHT.c". Denne fil indeholder er array (fht\_log\_out) med 128 pladser, med hver et random tal mellem 0 og 255. Disse tal repræsenterer en farve der skal vises på skærmen ved hjælp af lookup tabellen med RGB565 koderne.
+
+
 %\end{document}
