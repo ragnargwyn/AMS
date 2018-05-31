@@ -25,7 +25,7 @@ void init_Timer1();
 void record();
 void analyze();
 
-char * getFHTptr();
+unsigned char * getFHTptr();
 float getTopFrequency();
 float getSoundPressureLevel();
 

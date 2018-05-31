@@ -48,11 +48,13 @@ Interruptet vælges til at komme fra Timer 1 på compare B-interruptet jf. datab
 ADC'en aktiveres ikke i første omgang. 
 I stedet aktiveres den når \textit{record()}-funktionen kaldes. 
 Første sample efter aktiveringen bliver derfor beskadiget.
-Principielt burde samplet kasseres, men da hele optagelsen bliver ganget med et Hanning-vindue, har det ingen betydning. 
+Principielt burde samplet kasseres, men da hele optagelsen bliver foldet med et Hanning-vindue, har det ingen betydning. 
 
 Til at styre samplefrekvensen, bruges timer 1 i CTC mode. 
-OCR-værdien regnes ved: $ OCR = \frac{F_{CPU}}{2 \cdot K \cdot F_s - 1} $, hvor $K$ er presckaler-værdien.
+OCR-værdien regnes ved: $$ OCR = \frac{F_{CPU}}{2 \cdot K \cdot F_s - 1}, $$ hvor $K$ er presckaler-værdien.
 OCR rundes af til $399 $ uden preskaling, for en frekvens på $20 kHz$. 
+
+For at \textit{color} kan tilgå data i \textit{fht\_log\_out}, har \textit{mic} en \textit{getFHTptr()}-metode, som giver den en pointer til arrayet. 
 
 \section{Frekvensanalyse}
 Til at analysere på det optagede signal, bruges en diskret Hartley Transformation, forkortet FHT. 
@@ -60,13 +62,9 @@ FHT er en afart af diskret Fourier transformation, designet specifikt til reel d
 Algoritmen til at udføre FHT er fundet ved Open Music Labs, som er et audio-forum under Flingco Sound System. % \cite the god damn web page http://wiki.openmusiclabs.com/wiki/ArduinoFHT
 
 \subsection{Kvalitet af analyse}
-Transformationen har i denne algoritme en maksimal længde på 256 samples, hvilket giver en frekvensopløsning på $ \Delta f = \frac{20 kHz}{256 samples} = 78.125 Hz$. 
+Transformationen har i denne algoritme en maksimal længde på 256 samples, hvilket giver en frekvensopløsning på: $$ \Delta f = \frac{20 kHz}{256 samples} = 78.125 Hz$$ 
 En samplefrekvens på $ 40 kHz$ ville have dobbelt så store frekvens-bins, hvilket ville gøre det svært at skelne frekvensinholdet i de laveste frekvenser. 
 Derfor er begrænsningen på $20 kHz $ sat. 
 
 En længere FHT er selvfølgelig muligt, men da dette projekt, udelukkende med mikrofon, FHT og skærm, fylder $17 \%$ af datahukommelsen, vil det sandsynligvis ikke kunne lade sig gøre. 
 Zero-padding er også en mulighed for at forbedre frekvensopløsningnen, men så skulle halvdelen af algoritmens look-up tabeller alligevel forstørres. 
-
-\subsection{EVT: FHT algoritmen!!!!!!!!!!}
-
-EVT.... 

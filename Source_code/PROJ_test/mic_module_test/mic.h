@@ -16,7 +16,7 @@
 #define SAMPLE_RATE 20000
 #define DELTA_F SAMPLE_RATE/FHT_N
 
-#define SPL_REF 6		//should be calibrated!
+#define SPL_REF 5		//should be calibrated!
 
 void initRecorder();
 void init_ADC();
@@ -25,7 +25,7 @@ void init_Timer1();
 void record();
 void analyze();
 
-char * getFHTptr()
+unsigned char * getFHTptr();
 float getTopFrequency();
 float getSoundPressureLevel();
 

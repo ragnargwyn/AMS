@@ -10,16 +10,15 @@
 
 int main(void)
 {
-	float freq = 0, spl = 0;
+	float freq = 0, spl = 0;	// Debug variables
 	initRecorder();
     
     while (1) 
     {
-		record();
-		analyze();
+		record();				// Breakpoint here to see recorded signal
+		analyze();				// Breakpoint here to see FHT of signal 
 		freq = getTopFrequency();
 		spl = getSoundPressureLevel();
 		//PORTB = ~PORTB;		// Disable if display is connected
-    }
+	}
 }
-

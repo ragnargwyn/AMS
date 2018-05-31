@@ -5,7 +5,7 @@
 #include "TFTdriver.h"
 #include "Color.h"
 #include "IntToRGB.c"
-
+#include "mic.h"
 
 
 int main(void)
@@ -18,10 +18,7 @@ int main(void)
 	DisplayOn();
 	InitScrolling();
 	DisplayGradient();
-	
-	unsigned int i = 0;
-	
-	
+		
 	while (1)
 	{	
 		record();

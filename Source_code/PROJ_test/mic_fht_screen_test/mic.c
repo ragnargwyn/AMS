@@ -76,7 +76,7 @@ void analyze()
 
 /**********GET METHODS ************/
 
-char * getFHTptr()
+unsigned char * getFHTptr()
 {
 	return &fht_log_out;
 }

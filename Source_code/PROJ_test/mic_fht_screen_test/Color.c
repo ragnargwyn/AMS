@@ -24,7 +24,7 @@ void DisplayGradient()
 
 void DrawBins()
 {
-	char *fht_Ptr = getFHTptr();
+	unsigned char *fht_Ptr = getFHTptr();
 	for(unsigned int i = 0; i < 120; i++)
 	{
 		DrawLine(invvsp, i*2, 40, IntToRGB[fht_Ptr[i+1]][0], IntToRGB[fht_Ptr[i+1]][1], IntToRGB[fht_Ptr[i+1]][2]);
