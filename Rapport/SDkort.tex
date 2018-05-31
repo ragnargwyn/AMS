@@ -1,0 +1,24 @@
+\section{SD kort modul}
+
+SD kort modulet er ikke implementeret i denne endelige iteration af projektet.\\
+
+
+Skærmmodulets hardware indeholder en holder til et SD kort i dettes shield. Denne holder kan tilgås med SPI forbindelser fra PortB input-/outputpins på Atmega2560 
+
+\subsection{Datalogning}
+ 
+SD kortet indrages i projektet med henblik på datalogning, hvilket udvider realtids spektrogrammets implementeringsmuligheder. Med datalogning vil det grafiske display ikke blive den eneste mulighed for at gengive lydkarakteristika. Mikrofon-dataen, som behandles til grafisk gengivelse, vil blive gemt på SD kortet i en tekstfil og kan derved behandles og analyseres senere. Hver logning består af et array med 128 elementer af 8 bit, hvilket vil blive logget i takt med at skærmen opdateres.
+
+\subsection{Implementering}
+
+
+FAT16- mindre størrelse under 2 G
+sektioner af maks 512 bytes  
+
+tilpasset fra codelife eksempe,
+
+SPDR kna ikke aflæses derfor UART
+
+UART output med fejl, trodskorrekt output på analog
+read implementering med fejl - fejl på standard kommandoermed korrekt CRC
+
