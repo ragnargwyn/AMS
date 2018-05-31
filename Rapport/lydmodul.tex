@@ -1,5 +1,5 @@
 \section{Mikrofon}
-Til at måle lydinputs til systemet, er der valgt en electret condensator mikrofon fra Adafruit, med tilhørende for-forstærker. % https://www.adafruit.com/product/1063
+Til at måle lydinputs til systemet, er der valgt en electret condensator mikrofon fra Adafruit, med tilhørende for-forstærker. \cite{manual_mic} og \cite{manual_amp} 
 Mikrofonen er designet til at arbejde sammen med Arduino, og har et DC-offset på halvdelen af forsyningspændingen, hvilket gør det nemt at skifte reference. 
 Desuden er mikrofonen egnet til optagelse i området $20 Hz - 20 kHz$, hvilket passer fint til projektet. 
 Gain-indstillingen på på mikrofon-kittet kan bruges til at kalibrere systemet mht. korrekt måling af sound pressure level. 
@@ -59,7 +59,7 @@ For at \textit{color} kan tilgå data i \textit{fht\_log\_out}, har \textit{mic}
 \section{Frekvensanalyse}
 Til at analysere på det optagede signal, bruges en diskret Hartley Transformation, forkortet FHT. 
 FHT er en afart af diskret Fourier transformation, designet specifikt til reel data. 
-Algoritmen til at udføre FHT er fundet ved Open Music Labs, som er et audio-forum under Flingco Sound System. % \cite the god damn web page http://wiki.openmusiclabs.com/wiki/ArduinoFHT
+Algoritmen til at udføre FHT er fundet ved Open Music Labs, som er et audio-forum under Flingco Sound System. \cite{fht_arduino}
 
 \subsection{Kvalitet af analyse}
 Transformationen har i denne algoritme en maksimal længde på 256 samples, hvilket giver en frekvensopløsning på: $$ \Delta f = \frac{20 kHz}{256 samples} = 78.125 Hz$$ 
