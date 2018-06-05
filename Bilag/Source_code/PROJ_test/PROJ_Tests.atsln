@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "mic_FHT_test", "mic_module_test\mic_FHT_test.cproj", "{32004F80-0C3A-4176-9558-1148ED112A6F}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "screen_color_test", "LAB1_C\screen_color_test.cproj", "{6845EB84-39B9-42CC-A831-37C9591ABFD3}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "mic_fht_screen_test", "mic_fht_screen_test\mic_fht_screen_test.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32004F80-0C3A-4176-9558-1148ED112A6F}.Debug|AVR.ActiveCfg = Debug|AVR
+		{32004F80-0C3A-4176-9558-1148ED112A6F}.Debug|AVR.Build.0 = Debug|AVR
+		{32004F80-0C3A-4176-9558-1148ED112A6F}.Release|AVR.ActiveCfg = Release|AVR
+		{32004F80-0C3A-4176-9558-1148ED112A6F}.Release|AVR.Build.0 = Release|AVR
+		{6845EB84-39B9-42CC-A831-37C9591ABFD3}.Debug|AVR.ActiveCfg = Debug|AVR
+		{6845EB84-39B9-42CC-A831-37C9591ABFD3}.Debug|AVR.Build.0 = Debug|AVR
+		{6845EB84-39B9-42CC-A831-37C9591ABFD3}.Release|AVR.ActiveCfg = Release|AVR
+		{6845EB84-39B9-42CC-A831-37C9591ABFD3}.Release|AVR.Build.0 = Release|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.ActiveCfg = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

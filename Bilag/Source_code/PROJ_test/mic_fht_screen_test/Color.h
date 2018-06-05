@@ -1,0 +1,2 @@
+void DisplayGradient();
+void DrawBins();
